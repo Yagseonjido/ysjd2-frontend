@@ -1,0 +1,16 @@
+{
+    "patientId": 1,
+    "name": "김창득",
+    "birthdate": "590818",
+    "sex": "male",
+    "weight": 70,
+    "height": 175,
+    "bloodPressure": "160/90",
+    "pastDiseases": "고혈압, 당뇨",
+    "currentMedications": "아스피린 100mg, 하루 1회",
+    "allergies": "페니실린",
+    "familyH0818istory": "고혈압, 암",
+    "symptoms": "관절염",
+    "onset": "지난 주",
+    "painLevel": 10
+}

@@ -2,7 +2,7 @@
     "patientList" : [
            {
                 "id": 1,
-                "name": "안지한",
+                "name": "김창득",
                 "birthdate": "590818",
                 "sex": "male"
            },
