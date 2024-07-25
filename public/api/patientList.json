@@ -1,0 +1,28 @@
+{
+    "patientList" : [
+           {
+                "id": 1,
+                "name": "안지한",
+                "birthdate": "590818",
+                "sex": "male"
+           },
+           {
+                "id": 2 ,
+                "name": "김홍철",
+                "birthdate": "720127",
+                "sex": "male"
+           },
+           {
+                "id": 3,
+                "name": "신현태",
+                "birthdate": "670916",
+                "sex": "male"
+           },
+           {
+                "id": 4,
+                "name": "강춘자",
+                "birthdate": "570507",
+                "sex": "female"
+           }
+    ]
+  }
