@@ -1,5 +1,6 @@
 // src/components/PatientListBox.js
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { colors } from '../assets/ui/styles';
 import Profile from '../assets/images/profile_image.png';
@@ -30,8 +31,8 @@ const Title = styled.h1`
 `;
 
 const ProfileImage = styled.img`
-    height: 36px;
-`
+  height: 36px;
+`;
 
 const Description = styled.p`
   color: ${colors.gray900};
@@ -45,11 +46,15 @@ const PatientItem = styled.div`
   flex-direction: row;
   align-items: center;
   background-color: ${colors.white};
-  padding: 10px 40px;
+  padding: 4px 40px;
   margin: 5px 0;
   border-radius: 10px;
   border: 1px solid ${colors.gray300};
   cursor: pointer;
+
+  &:hover {
+    background-color: ${colors.gray200};
+  }
 `;
 
 const Name = styled.p`
@@ -70,17 +75,22 @@ const Sex = styled.p`
   padding-left: 20px;
 `;
 
-
 const PatientListContainer = styled.div`
   overflow: scroll;
 `;
 
 const anonymizeName = (name) => {
-    if (name.length <= 2) return name.charAt(0) + 'O';
-    return name.charAt(0) + 'O' + name.slice(2);
-  };
+  if (name.length <= 2) return name.charAt(0) + 'O';
+  return name.charAt(0) + 'O' + name.slice(2);
+};
 
 const PatientListBox = ({ patients }) => {
+  const navigate = useNavigate();
+
+  const handlePatientClick = (patientId, patientName) => {
+    navigate(`/simulation/${patientId}`, { state: { id: patientId, name: patientName } });
+  };
+
   return (
     <Container>
       <Title>환자리스트</Title>
@@ -90,8 +100,8 @@ const PatientListBox = ({ patients }) => {
       <PatientListContainer>
         {patients ? (
           patients.map((patient) => (
-            <PatientItem key={patient.id}>
-                <ProfileImage src={Profile}/>
+            <PatientItem key={patient.id} onClick={() => handlePatientClick(patient.id, patient.name)}>
+              <ProfileImage src={Profile} />
               <Name>{anonymizeName(patient.name)}</Name>
               <Sex>{patient.sex}</Sex>
               <Birth>{patient.birthdate}</Birth>
