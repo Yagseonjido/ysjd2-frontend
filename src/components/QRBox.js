@@ -21,11 +21,9 @@ const Container = styled.div`
   }
 `;
 
-const BoxHeader = styled.div`
-  text-align: center;
-`;
 
 const Title = styled.h1`
+text-align: center;
   color: ${colors.darkblue};
   font-weight: 800;
   font-size: 24px;
@@ -50,12 +48,10 @@ const QrContainer = styled.div`
 const QRBox = ({ qrUrl }) => {
   return (
     <Container>
-      <BoxHeader>
         <Title>환자 문진표 작성하기</Title>
         <Description>
           해당 서비스는 데모 버전이며, 작성하는 문진표와 제공되는 환자 정보는 실제 개인 정보가 아닙니다.
         </Description>
-      </BoxHeader>
       <QrContainer>
         <QrCodeGenerator url={qrUrl} size="mid" />
       </QrContainer>

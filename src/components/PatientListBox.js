@@ -49,6 +49,7 @@ const PatientItem = styled.div`
   margin: 5px 0;
   border-radius: 10px;
   border: 1px solid ${colors.gray300};
+  cursor: pointer;
 `;
 
 const Name = styled.p`
