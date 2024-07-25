@@ -1,0 +1,16 @@
+{
+    "id": 3,
+    "name": "신현태",
+    "birthdate": "670916",
+    "sex": "male",
+    "weight": 85,
+    "height": 175,
+    "bloodPressure": "135/85",
+    "pastDiseases": "당뇨, 신장질환",
+    "currentMedications": "인슐린 10units, 하루 2회",
+    "allergies": "없음",
+    "familyHistory": "당뇨, 신장질환",
+    "symptoms": "피로, 발 부종",
+    "onset": "지난주",
+    "painLevel": 5
+}

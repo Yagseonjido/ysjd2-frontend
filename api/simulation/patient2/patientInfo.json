@@ -1,0 +1,16 @@
+{
+    "id": 2,
+    "name": "마동석",
+    "birthdate": "720127",
+    "sex": "male",
+    "weight": 90,
+    "height": 178,
+    "bloodPressure": "150/95",
+    "pastDiseases": "고혈압, 천식",
+    "currentMedications": "베타차단제 100mg, 하루 1회",
+    "allergies": "없음",
+    "familyHistory": "고혈압, 심장질환",
+    "symptoms": "호흡곤란, 두통",
+    "onset": "어제",
+    "painLevel": 8
+}

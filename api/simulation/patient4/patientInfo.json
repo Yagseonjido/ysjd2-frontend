@@ -1,0 +1,16 @@
+{
+    "id": 4,
+    "name": "강춘자",
+    "birthdate": "570507",
+    "sex": "female",
+    "weight": 60,
+    "height": 158,
+    "bloodPressure": "125/80",
+    "pastDiseases": "골다공증, 고혈압",
+    "currentMedications": "칼슘 보충제 500mg, 하루 1회",
+    "allergies": "없음",
+    "familyHistory": "골다공증, 고혈압",
+    "symptoms": "뼈 통증, 피로",
+    "onset": "2주 전",
+    "painLevel": 6
+  }
