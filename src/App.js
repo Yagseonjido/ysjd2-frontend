@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import QuestionnairePage from "./pages/QuestionnairePage";
 import SimulationPage from "./pages/SimulationPage";
 import PatientResultPage from "./pages/PatientResultPage";
+import ResultPage from "./pages/ResultPage";
 
 function App() {
   return (
@@ -13,7 +14,7 @@ function App() {
           <Route path="/questionnaire/*" element={<QuestionnairePage />} />
           <Route path="/simulation/:patientId" element={<SimulationPage />} />
           <Route path="/result/:patientId" element={<PatientResultPage />} />
-        </Routes>
+          <Route path="/result/:patientId/:option" element={<ResultPage />} />        </Routes>
       </div>
     </div>
   );

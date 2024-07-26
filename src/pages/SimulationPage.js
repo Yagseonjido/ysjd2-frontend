@@ -12,14 +12,6 @@ const Container = styled.div`
   width: 100vw;
 `;
 
-const Content = styled.div`
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`;
-
 function SimulationPage() {
   const { patientId } = useParams();
   const location = useLocation();

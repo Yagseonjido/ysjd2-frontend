@@ -1,220 +1,113 @@
 {
-    "nodes": [
-      {
-        "id": "prescription1-1",
-        "drugId": "N02BE01",
-        "drugType": "아세트 아미노펜",
-        "labelKo": "타이레놀",
-        "labelEn": "Tylenol",
-        "efficacy": ["통증 완화", "해열"]
+  "nodes": [
+    {
+      "id": "prescription1-1",
+      "drugId": "R03CC02",
+      "drugType": "베타2 작용제",
+      "labelKo": "살부타몰",
+      "labelEn": "Salbutamol",
+      "efficacy": ["기관지 확장", "천식 완화"]
+    },
+    {
+      "id": "prescription1-2",
+      "drugId": "N02BE01",
+      "drugType": "아세트 아미노펜",
+      "labelKo": "타이레놀",
+      "labelEn": "Tylenol",
+      "efficacy": ["통증 완화", "해열"]
+    },
+    {
+      "id": "reaction1-1",
+      "label": "심계항진",
+      "explain": {
+        "발생 빈도": "드물(0.1-1%)",
+        "증상 예시": "빠른 심장박동, 두근거림"
       },
-      {
-        "id": "prescription1-2",
-        "drugId": "M01AE01",
-        "drugType": "NSAIDs",
-        "labelKo": "이부프로펜",
-        "labelEn": "Ibuprofen",
-        "efficacy": ["통증 완화", "염증 감소"]
+      "alert": "심장 질환자 주의"
+    },
+    {
+      "id": "reaction1-2",
+      "label": "간 기능 저하",
+      "explain": {
+        "발생 빈도": "매우 드물(<0.1%)",
+        "증상 예시": "황달, 어두운 소변"
       },
-      {
-        "id": "prescription1-3",
-        "drugId": "M01AE01",
-        "drugType": "NSAIDs",
-        "labelKo": "나프록센",
-        "labelEn": "Naproxen",
-        "efficacy": ["통증 완화", "염증 감소"]
-      },  
-      {
-              "id": "reaction1-1",
-              "label":"간 기능 저하",
-              "explain": 
-              {
-                      "발생 빈도" : "매우 드물(<0.1%)",
-                      "증상 예시" : "황달, 어두운 소변"
-              },
-              "alert" : "간 기능 저하 환자 주의"
-          },
-          {
-              "id": "reaction1-2",
-              "label":"위장관 문제",
-              "explain": 
-              {
-                      "발생 빈도" : "혼합(1-10%)",
-                      "증상 예시" : "복통, 속쓰림, 구토"
-              },
-              "alert" : "음식과 함께 복용"
-          },
-          {
-              "id": "reaction1-3",
-              "label":"신장 기능 저하",
-              "explain": 
-              {
-                      "발생 빈도" : "드물(0.1-1%)",
-                      "증상 예시" : "소변량 감소, 피로, 부종"
-              },
-              "alert" : "신장 모니터링"
-          },
-      {
-        "id": "prescription2-1",
-        "drugId": "A05BA03",
-        "drugType": "간 보호제",
-        "labelKo": "실리마린",
-        "labelEn": "Silymarin",
-        "efficacy": ["간 보호", "항산화 작용"]
+      "alert": "간 기능 저하 환자 주의"
+    },
+    {
+      "id": "prescription2-1",
+      "drugId": "C09AA03",
+      "drugType": "ACE 억제제",
+      "labelKo": "리시노프릴",
+      "labelEn": "Lisinopril",
+      "efficacy": ["고혈압 조절", "심부전 개선"]
+    },
+    {
+      "id": "prescription2-2",
+      "drugId": "A05BA03",
+      "drugType": "간 보호제",
+      "labelKo": "실리마린",
+      "labelEn": "Silymarin",
+      "efficacy": ["간 보호", "항산화 작용"]
+    },
+    {
+      "id": "reaction2-1",
+      "label": "피로",
+      "explain": {
+        "발생 빈도": "혼합(1-10%)",
+        "증상 예시": "피로, 무기력"
       },
-      {
-        "id": "prescription2-2",
-        "drugId": "A02BC01",
-        "drugType": "PPI",
-        "labelKo": "오메프라졸",
-        "labelEn": "Prilosec",
-        "efficacy": ["위장관 장애"]
+      "alert": "휴식 및 적절한 수면 필요"
+    },
+    {
+      "id": "reaction2-2",
+      "label": "기침",
+      "explain": {
+        "발생 빈도": "혼합(1-10%)",
+        "증상 예시": "마른 기침, 지속적인 기침"
       },
-      {
-        "id": "prescription2-3",
-        "drugId": "A02BA02",
-        "drugType": "H2RA",
-        "labelKo": "라니티딘",
-        "labelEn": "Ranitidine",
-        "efficacy": ["위장 분비 감소", "위장 보호"]
-      },  
-      {
-        "id": "prescription2-4",
-        "drugId": "C03CA01",
-        "drugType": "이뇨제",
-        "labelKo": "푸로세이드",
-        "labelEn": "Furosemide",
-        "efficacy": ["체액 배출", "부종 감소"]
-      },  
-      {
-        "id": "prescription2-5",
-        "drugId": "C09AA03",
-        "drugType": "신장 보호 약물",
-        "labelKo": "리시노프릴",
-        "labelEn": "Lisinopril",
-        "efficacy": ["신장 보호", "혈압 조절"]
-      },  
-      {
-              "id": "reaction2-1",
-              "label":"전해질 불균형",
-              "explain": 
-              {
-                      "발생 빈도" : "혼합(1-10%)",
-                      "증상 예시" : "저칼륨혈증, 저마그네슘혈증"
-              },
-              "alert" : "간 기능 저하 환자 주의"
-          },
-          {
-              "id": "reaction2-2",
-              "label":"두통",
-              "explain": 
-              {
-                      "발생 빈도" : "혼합(1-10%)",
-                      "증상 예시" : "경미한 두통"
-              },
-              "alert" : "필요 시 진통제 복용"
-          },
-          {
-              "id": "reaction2-3",
-              "label":"위장관 문제",
-              "explain": 
-              {
-                      "발생 빈도" : "혼합(1-10%)",
-                      "증상 예시" : "복통, 속쓰림, 구토"
-              },
-              "alert" : "음식과 함께 복용"
-          },
-          {
-              "id": "reaction2-4",
-              "label":"탈수 및 저혈압",
-              "explain": 
-              {
-                      "발생 빈도" : "드물(0.1%-1%)",
-                      "증상 예시" : "어지러움, 피로, 저혈압"
-              },
-              "alert" : "체액 상태 모니터링 필요"
-          },
-          {
-              "id": "reaction2-5",
-              "label": "통풍",
-              "explain": 
-              {
-                      "발생 빈도" : "드물(0.1%-1%)",
-                      "증상 예시" : "어지러움, 피로, 저혈압"
-              },
-              "alert" : "체액 상태 모니터링 필요"
-          }
-    ],
-    "edges": [
-      {
-        "from": "prescription1-1",
-        "to": "reaction1-1"
+      "alert": "증상 지속 시 의사 상담 필요"
+    },
+    {
+      "id": "reaction2-3",
+      "label": "위장관 문제",
+      "explain": {
+        "발생 빈도": "혼합(1-10%)",
+        "증상 예시": "복통, 설사, 구역질"
       },
-      {
-        "from": "prescription1-2",
-        "to": "reaction1-2"
-      },
-      {
-        "from": "prescription1-2",
-        "to": "reaction1-3"
-      },
-      {
-        "from": "prescription1-3",
-        "to": "reaction1-2"
-      },
-      {
-        "from": "prescription1-3",
-        "to": "reaction1-3"
-      },
-      {
-        "from": "reaction1-1",
-        "to": "prescription2-1"
-      },
-      {
-        "from": "reaction1-2",
-        "to": "prescription2-2"
-      },
-      {
-        "from": "reaction1-2",
-        "to": "prescription2-3"
-      },
-      {
-        "from": "reaction1-3",
-        "to": "prescription2-4"
-      },
-      {
-        "from": "reaction1-3",
-        "to": "prescription2-5"
-      },
-      {
-        "from": "prescription2-1",
-        "to": "reaction2-3"
-      },
-      {
-        "from": "prescription2-2",
-        "to": "reaction2-1"
-      },
-      {
-        "from": "prescription2-3",
-        "to": "reaction2-2"
-      },
-      {
-        "from": "prescription2-4",
-        "to": "reaction2-2"
-      },
-      {
-        "from": "prescription2-4",
-        "to": "reaction2-4"
-      },     
-        {
-        "from": "prescription2-4",
-        "to": "reaction2-5"
-      },
-      {
-        "from": "prescription2-5",
-        "to": "reaction2-4"
-      }
-    ],
-    "review" : "타이레놀은 위장관에 미치는 부작용이 적고, 신장 기능에 대한 영향도 비교적 적습니다. 또한, 고혈압 및 당뇨병 환자에게 안전한 선택이며, 심혈관 위험이 낮아 환자의 심혈관 건강을 보호합니다. 적절한 용량을 준수하면 간 손상의 위험도 낮아 안전하게 사용할 수 있습니다. 이러한 이유로, 타이레놀은 환자의 통증 관리에 가장 적합한 처방입니다."
-  }
-  
+      "alert": "식사와 함께 복용 권장"
+    }
+  ],
+  "edges": [
+    {
+      "from": "prescription1-1",
+      "to": "reaction1-1"
+    },
+    {
+      "from": "prescription1-2",
+      "to": "reaction1-2"
+    },
+    {
+      "from": "reaction1-1",
+      "to": "prescription2-1"
+    },
+    {
+      "from": "reaction1-2",
+      "to": "prescription2-2"
+    },
+    {
+      "from": "prescription2-1",
+      "to":  "reaction2-1"
+    },
+   
+    {
+      "from": "prescription2-1",
+      "to": "reaction2-2"
+    },
+    {
+      "from": "prescription2-2",
+      "to": "reaction2-3"
+    }
+  ],
+  "review": "마동석 환자는 호흡곤란과 두통으로 인해 살부타몰(베타2 작용제)과 타이레놀(아세트아미노펜), 아테놀롤(베타차단제)이 처방될 수 있습니다. 살부타몰은 기관지 확장과 천식 완화에 효과적이지만, 심계항진 등의 부작용이 있을 수 있습니다. 타이레놀은 통증과 열을 낮추는데 효과적이지만, 간 기능 저하의 부작용이 있을 수 있습니다. 아테놀롤은 심박수와 혈압을 조절하는데 효과적이지만, 저혈압을 유발할 수 있습니다. 심계항진이 발생할 경우 리시노프릴(ACE 억제제)가 추가 처방될 수 있으며, 이는 기침을 유발할 수 있습니다. 간 기능 저하가 발생할 경우 실리마린(간 보호제)가 추가 처방될 수 있으며, 이는 위장관 문제를 유발할 수 있습니다. 정기적인 건강 검진과 휴식이 필요합니다."
+}

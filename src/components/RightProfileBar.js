@@ -96,7 +96,6 @@ const RightProfileBar = ({ patientId, patientName }) => {
   const [selectedPrescriptions, setSelectedPrescriptions] = useState({});
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [qrValue, setQrValue] = useState('');
-  const baseURL = process.env.REACT_APP_API_URL;
   const [patientInfo, setPatientInfo] = useState(null);
 
   useEffect(() => {
@@ -189,7 +188,7 @@ const RightProfileBar = ({ patientId, patientName }) => {
 
     // QR 코드 생성 값 설정 및 모달 열기
     if (patientInfo) {
-      setQrValue(`${process.env.REACT_APP_BASE_URL}/result/${patientId}`); // 환자 ID를 포함하여 결과 페이지 URL 생성
+      setQrValue(`${process.env.REACT_APP_BASE_URL}${process.env.REACT_APP_NAME}/result/${patientId}`); // 환자 ID를 포함하여 결과 페이지 URL 생성
       setIsModalOpen(true);
 
       // 서버로 시나리오 전송 (실패 여부와 상관없이 QR 코드 모달 표시)
