@@ -1,4 +1,3 @@
-// src/pages/Home.js
 import React, { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import QRBox from '../components/QRBox';
@@ -24,9 +23,10 @@ const Content = styled.div`
 
 const Home = () => {
   const [data, setData] = useState(null);
+  const baseUrl = process.env.REACT_APP_API_BASE_URL;
 
   useEffect(() => {
-    fetch(`${process.env.PUBLIC_URL}/api/patientList.json`)
+    fetch(`${baseUrl}${process.env.REACT_APP_API_GET_PATIENT_LIST}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -38,6 +38,7 @@ const Home = () => {
       })
       .catch((error) => console.error('Error fetching patient list:', error));
   }, []);
+
 
   const qrUrl = `${process.env.REACT_APP_BASE_URL}${process.env.PUBLIC_URL}${process.env.REACT_APP_PATH}`;
 

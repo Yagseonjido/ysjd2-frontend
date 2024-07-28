@@ -28,16 +28,21 @@ const QuestionnairePage = () => {
     console.log("Submitting data:", payload);
     
     // 서버로 데이터 전송 로직
-    fetch('/api/submit', {
+    fetch(`http://34.64.133.142:8080/patient/info`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(payload),
-    }).then((response) => {
-      if (response.ok) {
-        // 일단 보내버려... 
+    })
+    .then((response) => response.text())
+    .then((data) => {
+      if (data === 'Success') {
+        alert('문진표 작성이 완료되었습니다.');
       }
+    })
+    .catch((error) => {
+      console.error('Error submitting data:', error);
     });
   };
 
