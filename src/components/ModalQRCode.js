@@ -18,6 +18,7 @@ const ModalContainer = styled.div`
   background-color: ${colors.white};
   border-radius: 36px;
   letter-spacing: -0.5px;
+  overflow-y: auto; /* Added to allow vertical scrolling if content overflows */
 `;
 
 const Title = styled.h2`
@@ -36,6 +37,10 @@ const Description = styled.div`
   font-size: 18px;
   color: ${colors.gray900};
   margin-bottom: 36px;
+
+  @media (max-width: 1200px) {
+    padding: 0px 12px;
+  }
 `;
 
 const Alert = styled.div`
@@ -44,6 +49,10 @@ const Alert = styled.div`
   color: ${colors.gray900};
   margin-bottom: 44px;
   text-decoration: underline;
+
+  @media (max-width: 1200px) {
+    padding: 0px 12px;
+  }
 `;
 
 const CloseButton = styled.button`

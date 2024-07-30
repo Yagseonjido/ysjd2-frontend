@@ -2,7 +2,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { colors } from '../assets/ui/styles';
-import HeaderBar from '../assets/images/header_bar3.png';
 import IdeaIcon from '../assets/icons/idea_icon.png'; 
 
 const Button = styled.button`
@@ -30,9 +29,6 @@ const ButtonContainer = styled.div`
   align-items: center;
 `;
 
-const HeaderBarImage = styled.img`
-  height: 100px;
-`;
 
 const SubTitle = styled.h3`
   color: ${colors.darkblue};
@@ -100,7 +96,6 @@ const EffectList = ({ effects }) => (
 const ResultStep4 = ({ data, onNext }) => {
   return (
     <>
-      <HeaderBarImage src={HeaderBar} />
       {data.prescription2.map((prescription, index) => (
         <div key={index}>
           <SubTitle>{index + 1}. {prescription.drugName}</SubTitle>

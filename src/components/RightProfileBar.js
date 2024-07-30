@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { colors } from '../assets/ui/styles';
 import ModalQRCode from './ModalQRCode';
@@ -91,37 +91,18 @@ const SendButton = styled.button`
   }
 `;
 
-const RightProfileBar = ({ patientId, patientName }) => {
-  const [data, setData] = useState(null);
+const RightProfileBar = ({ patientInfo, simulationData }) => {
   const [selectedPrescriptions, setSelectedPrescriptions] = useState({});
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [qrValue, setQrValue] = useState('');
-  const [patientInfo, setPatientInfo] = useState(null);
-
-  useEffect(() => {
-    fetch(`${process.env.PUBLIC_URL}/api/simulation/patient${patientId}/patientInfo.json`)
-      .then(response => response.json())
-      .then(data => setPatientInfo(data))
-      .catch(error => console.error('Error fetching patient info:', error));
-  }, []);
-
-  useEffect(() => {
-    fetch(`${process.env.PUBLIC_URL}/api/simulation/patient${patientId}/simulationResult.json`)
-      .then((response) => response.json())
-      .then((data) => {
-        setData(data);
-      })
-      .catch((error) => console.error('Error fetching simulationResult info:', error));
-  }, []);
 
   const handlePrescriptionClick = (prescriptionId) => {
     const newSelectedPrescriptions = { ...selectedPrescriptions };
     newSelectedPrescriptions[prescriptionId] = !newSelectedPrescriptions[prescriptionId];
-    
-    // Automatically expand all nested prescriptions and side effects
+
     if (newSelectedPrescriptions[prescriptionId]) {
       const expandNestedPrescriptions = (nodeId) => {
-        const relevantEdges = data.edges.filter(edge => edge.from === nodeId);
+        const relevantEdges = simulationData.edges.filter(edge => edge.from === nodeId);
         relevantEdges.forEach(edge => {
           newSelectedPrescriptions[edge.to] = true;
           expandNestedPrescriptions(edge.to);
@@ -129,7 +110,7 @@ const RightProfileBar = ({ patientId, patientName }) => {
       };
       expandNestedPrescriptions(prescriptionId);
     }
-    
+
     setSelectedPrescriptions(newSelectedPrescriptions);
   };
 
@@ -140,9 +121,9 @@ const RightProfileBar = ({ patientId, patientName }) => {
   };
 
   const renderSideEffectsAndPrescriptions = (node) => {
-    const relevantEdges = data.edges.filter(edge => edge.from === node.id);
+    const relevantEdges = simulationData.edges.filter(edge => edge.from === node.id);
     return relevantEdges.map(edge => {
-      const targetNode = data.nodes.find(n => n.id === edge.to);
+      const targetNode = simulationData.nodes.find(n => n.id === edge.to);
       return (
         <div key={targetNode.id}>
           <SideEffectItem>
@@ -173,7 +154,7 @@ const RightProfileBar = ({ patientId, patientName }) => {
 
     Object.keys(selectedPrescriptions).forEach(key => {
       if (selectedPrescriptions[key]) {
-        const node = data.nodes.find(n => n.id === key);
+        const node = simulationData.nodes.find(n => n.id === key);
         if (node.id.startsWith('prescription1')) {
           selectedScenario.prescription1.push(node);
         } else if (node.id.startsWith('reaction1')) {
@@ -186,27 +167,40 @@ const RightProfileBar = ({ patientId, patientName }) => {
       }
     });
 
-    // QR 코드 생성 값 설정 및 모달 열기
+    console.log('Selected Scenario:', selectedScenario);
+
+    // 선택된 처방과 부작용만 필터링
+    const filteredScenario = {
+      prescription1: selectedScenario.prescription1.filter(prescription => selectedPrescriptions[prescription.id]),
+      reaction1: selectedScenario.reaction1.filter(reaction => selectedPrescriptions[reaction.id]),
+      prescription2: selectedScenario.prescription2.filter(prescription => selectedPrescriptions[prescription.id]),
+      reaction2: selectedScenario.reaction2.filter(reaction => selectedPrescriptions[reaction.id]),
+    };
+
+    console.log('Filtered Scenario:', filteredScenario);
+
     if (patientInfo) {
-      setQrValue(`${process.env.REACT_APP_BASE_URL}${process.env.REACT_APP_NAME}/result/${patientId}`); // 환자 ID를 포함하여 결과 페이지 URL 생성
+      setQrValue(`${process.env.REACT_APP_API_BASE_URL}/result/${patientInfo.patientId}`);
       setIsModalOpen(true);
 
-      // 서버로 시나리오 전송 (실패 여부와 상관없이 QR 코드 모달 표시)
-      fetch('/api/sendPrescription', {
+      const payload = { id: patientInfo.patientId, scenario: filteredScenario };
+      console.log('Sending payload:', payload);
+      fetch(`${process.env.REACT_APP_API_BASE_URL}${process.env.REACT_APP_API_POST_SIMULATION_SELECTED}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ id: 1, scenario: selectedScenario }),
+        body: JSON.stringify(payload),
       })
-        .then(response => response.json())
+        .then(response => response.text())
         .then(result => {
           console.log('Successfully sent prescription:', result);
-          // Handle success
+          if (result === 'Success') {
+            // Handle success
+          }
         })
         .catch(error => {
           console.error('Error sending prescription:', error);
-          // Handle error
         });
     }
   };
@@ -215,7 +209,7 @@ const RightProfileBar = ({ patientId, patientName }) => {
     <Section>
       <Content>
         <Header>처방 내역 선택</Header>
-        {data && data.nodes
+        {simulationData && simulationData.nodes
           .filter(node => node.id.startsWith('prescription1'))
           .map(node => (
             <div key={node.id}>

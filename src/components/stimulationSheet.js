@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Xarrow from 'react-xarrows';
 import { colors } from '../assets/ui/styles';
@@ -70,21 +70,10 @@ const Column = styled.div`
   margin: 20px 0;
 `;
 
-const StimulationSheet = ({ patientId, patientName }) => {
-  const [data, setData] = useState(null);
+const StimulationSheet = ({ data }) => {
   const [activeEdges, setActiveEdges] = useState([]);
   const [selectedNode, setSelectedNode] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  useEffect(() => {
-    fetch(`${process.env.PUBLIC_URL}/api/simulation/patient${patientId}/simulationResult.json`)
-      .then((response) => response.json())
-      .then((data) => {
-        setData(data);
-        highlightEdges('prescription1-1', data.edges);
-      })
-      .catch((error) => console.error('Error fetching simulationResult info:', error));
-  }, []);
 
   const highlightEdges = (startNodeId, edges) => {
     const visited = new Set();
@@ -109,9 +98,7 @@ const StimulationSheet = ({ patientId, patientName }) => {
     setSelectedNode(startNodeId);
   };
 
-  const handleModalClose = () => {
-    setIsModalOpen(false);
-  };
+
 
   if (!data) {
     return <div>Loading...</div>;

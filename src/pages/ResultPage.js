@@ -5,7 +5,8 @@ import Step1 from '../components/ResultStep1';
 import Step2 from '../components/ResultStep2';
 import Step3 from '../components/ResultStep3';
 import Step4 from '../components/ResultStep4';
-import Step5 from '../components/ResultStep5'
+import Step5 from '../components/ResultStep5';
+import StepNavigation from '../components/StepNavigation';
 
 const Container = styled.div`
   display: flex;
@@ -23,7 +24,6 @@ const Content = styled.div`
   max-width: 360px;
   width: 100%;
   position: relative;
-  
 `;
 
 function ResultPage() {
@@ -32,10 +32,29 @@ function ResultPage() {
   const [step, setStep] = useState(1);
 
   useEffect(() => {
-    fetch(`${process.env.PUBLIC_URL}/api/simulation/patient${patientId}/result${option}.json`)
-      .then(response => response.json())
-      .then(data => setData(data))
-      .catch(error => console.error('Error fetching result:', error));
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/simulation/patient`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ id: patientId, explainType: option }),
+        });
+
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+
+        const result = await response.json();
+        console.log('Fetched data:', result); // 로그로 데이터 출력
+        setData(result);
+      } catch (error) {
+        console.error('Error fetching result:', error);
+      }
+    };
+
+    fetchData();
   }, [patientId, option]);
 
   if (!data) {
@@ -54,8 +73,6 @@ function ResultPage() {
         return <Step4 data={data} onNext={() => setStep(5)} />;
       case 5:
         return <Step5 data={data} />;
-      
-
       default:
         return <div>Invalid step</div>;
     }
@@ -64,6 +81,7 @@ function ResultPage() {
   return (
     <Container>
       <Content>
+        <StepNavigation currentStep={step} setStep={setStep} />
         {renderStep()}
       </Content>
     </Container>

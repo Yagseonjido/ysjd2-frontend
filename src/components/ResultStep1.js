@@ -166,7 +166,9 @@ const ListHeader = styled.h4`
 const ResultStep1 = ({ data, onNext }) => {
   const filterLabels = (reactions) => reactions.map((reaction) => reaction.label).filter(Boolean).join(', ');
 
-  const adviceList = data.totalResult[1].advice;
+  // Handle both indices for adviceList
+  const adviceList1 = data.totalResult[0]?.advice || [];
+  const adviceList2 = data.totalResult[1]?.advice || [];
 
   const prescriptionSteps = [
     {
@@ -207,7 +209,7 @@ const ResultStep1 = ({ data, onNext }) => {
       <SubTitle>처방 연쇄를 방지하기 위해서는...</SubTitle>
 
       <List>
-        {adviceList.map((advice, index) => (
+        {[...adviceList1, ...adviceList2].map((advice, index) => (
           <ListItem key={index}>
             <ListHeader>{Object.keys(advice)[0]}</ListHeader>
             {Object.values(advice)[0]}

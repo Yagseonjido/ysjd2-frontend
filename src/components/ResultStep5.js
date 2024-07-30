@@ -1,10 +1,8 @@
-// ResultStep5.js
 import React from 'react';
 import styled from 'styled-components';
 import { colors } from '../assets/ui/styles';
-import HeaderBar from '../assets/images/header_bar4.png';
-import ThumbUpIcon from '../assets/icons/thumb_up.png'; 
-import ThumbDownIcon from '../assets/icons/thumb_down.png'; 
+import ThumbUpIcon from '../assets/icons/thumb_up.png';
+import ThumbDownIcon from '../assets/icons/thumb_down.png';
 
 const Button = styled.button`
   background-color: ${colors.darkblue};
@@ -31,9 +29,6 @@ const ButtonContainer = styled.div`
   align-items: center;
 `;
 
-const HeaderBarImage = styled.img`
-  height: 100px;
-`;
 
 const SubTitle = styled.h3`
   color: ${colors.darkblue};
@@ -94,12 +89,16 @@ const DataList = ({ title, icon, data }) => (
       {title}
     </EffectTitle>
     <List>
-      {data.map((item, index) => (
-        <ListItem key={index}>
-          <ListHeader>{Object.keys(item)[0]}</ListHeader>
-          {Object.values(item)[0]}
-        </ListItem>
-      ))}
+      {data && data.length > 0 ? (
+        data.map((item, index) => (
+          <ListItem key={index}>
+            <ListHeader>{Object.keys(item)[0]}</ListHeader>
+            {Object.values(item)[0]}
+          </ListItem>
+        ))
+      ) : (
+        <ListItem>해당 내용이 없습니다.</ListItem>
+      )}
     </List>
   </>
 );
@@ -107,7 +106,6 @@ const DataList = ({ title, icon, data }) => (
 const ResultStep5 = ({ data }) => {
   return (
     <>
-      <HeaderBarImage src={HeaderBar} />
       {data.reaction2.map((reaction, index) => (
         <div key={index}>
           <SubTitle>부작용. {reaction.label}</SubTitle>

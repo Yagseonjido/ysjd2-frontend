@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+// src/components/LeftProfileBar.js
+import React from 'react';
 import styled from 'styled-components';
 import { colors } from '../assets/ui/styles';
 import Logo from '../assets/images/yag_logo.png';
@@ -83,13 +84,13 @@ const Tag = styled.span`
   background-color: ${colors.highlightRed};
 `;
 
-const SymptomTag =  styled.span`
-color: ${colors.gray900};
-padding: 4px 10px;
-border-radius: 2px;
-font-size: 12px;
-font-weight: bold;
-background-color: ${colors.gray100};
+const SymptomTag = styled.span`
+  color: ${colors.gray900};
+  padding: 4px 10px;
+  border-radius: 2px;
+  font-size: 12px;
+  font-weight: bold;
+  background-color: ${colors.gray100};
 `;
 
 const Bold = styled.span`
@@ -100,8 +101,8 @@ const Bold = styled.span`
 `;
 
 const Line = styled.div`
-margin-bottom: 8px;
-`
+  margin-bottom: 8px;
+`;
 
 // Utility function to calculate age
 const calculateAge = (birthdate) => {
@@ -114,16 +115,7 @@ const calculateAge = (birthdate) => {
   return age;
 };
 
-const LeftProfileBar = ({ patientId, patientName }) => {
-  const [patientInfo, setPatientInfo] = useState(null);
-
-  useEffect(() => {
-    fetch(`${process.env.PUBLIC_URL}/api/simulation/patient${patientId}/patientInfo.json`)
-      .then(response => response.json())
-      .then(data => setPatientInfo(data))
-      .catch(error => console.error('Error fetching patient info:', error));
-  }, []);
-
+const LeftProfileBar = ({ patientInfo }) => {
   if (!patientInfo) {
     return <div>Loading...</div>;
   }
@@ -144,7 +136,6 @@ const LeftProfileBar = ({ patientId, patientName }) => {
         <Line><Bold>• 증상</Bold><SymptomTag>{patientInfo.symptoms}</SymptomTag></Line>
         <Line><Bold>• 시기</Bold><SymptomTag>{patientInfo.onset}</SymptomTag></Line>
         <Line><Bold>• 고통 정도(1-10)</Bold><SymptomTag>{patientInfo.painLevel}</SymptomTag></Line>
-    
 
         <SectionTitle>기초 정보</SectionTitle>
         <PatientInfoItem>• 키: {patientInfo.height} cm</PatientInfoItem>
@@ -163,6 +154,6 @@ const LeftProfileBar = ({ patientId, patientName }) => {
       </Content>
     </Section>
   );
-}
+};
 
 export default LeftProfileBar;

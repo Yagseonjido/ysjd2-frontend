@@ -7,6 +7,7 @@ import Step4 from '../components/CheckupStep4.js';
 
 const QuestionnairePage = () => {
   const [formData, setFormData] = useState({});
+  const baseUrl = process.env.REACT_APP_API_BASE_URL;
 
   const handleSubmit = () => {
     const payload = {
@@ -27,8 +28,9 @@ const QuestionnairePage = () => {
 
     console.log("Submitting data:", payload);
     
+    
     // 서버로 데이터 전송 로직
-    fetch(`http://34.64.133.142:8080/patient/info`, {
+    fetch(`${baseUrl}${process.env.REACT_APP_API_POST_PATIENT_INFO}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
